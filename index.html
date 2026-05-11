@@ -10,7 +10,7 @@
     <main class="sheet">
       <header class="sheet-header">
         <h1 class="title">Checkliste & Berechnung<sup class="sup">1</sup></h1>
-        <div class="columns-head">
+        <div class="columns-head" aria-hidden="true">
           <span class="col ja">Ja</span>
           <span class="col nein">Nein</span>
         </div>
@@ -19,11 +19,11 @@
       <div class="rule-top" aria-hidden="true"></div>
 
       <section class="checklist">
-        <div class="row" data-q="0">
+        <div class="row" data-q="0" role="group" aria-labelledby="q0-label">
           <div class="index-circle">0</div>
-          <div class="question-box">Gibt es eine reale Alternative fuer die entsprechende Software?<sup class="sup">2</sup></div>
-          <div class="value yes" role="button" tabindex="0" data-value="5">5</div>
-          <div class="value no" role="button" tabindex="0" data-value="5">5</div>
+          <div id="q0-label" class="question-box">Gibt es eine reale Alternative fuer die entsprechende Software?<sup class="sup">2</sup></div>
+          <button type="button" class="value yes" data-value="5" aria-pressed="false" aria-label="Ja, Wert 5">5</button>
+          <button type="button" class="value no" data-value="5" aria-pressed="false" aria-label="Nein, Wert 5">5</button>
         </div>
 
         <!-- Duenne Linie unter Frage 0, ggf. mit unterbrochenem Segment und kleinem Pfeil unter "Ja" (5) -->
@@ -35,43 +35,43 @@
         </svg>
         
 
-        <div class="row" data-q="1">
+        <div class="row" data-q="1" role="group" aria-labelledby="q1-label">
           <div class="index-circle">1</div>
-          <div class="question-box">Ist der Firmensitz des Anbieters in der EU?<sup class="sup">3</sup></div>
-          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
-          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+          <div id="q1-label" class="question-box">Ist der Firmensitz des Anbieters in der EU?<sup class="sup">3</sup></div>
+          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
         
 
-        <div class="row" data-q="2">
+        <div class="row" data-q="2" role="group" aria-labelledby="q2-label">
           <div class="index-circle">2</div>
-          <div class="question-box">Handelt es sich um Open Source Software?</div>
-          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
-          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+          <div id="q2-label" class="question-box">Handelt es sich um Open Source Software?</div>
+          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
         
 
-        <div class="row" data-q="3">
+        <div class="row" data-q="3" role="group" aria-labelledby="q3-label">
           <div class="index-circle">3</div>
-          <div class="question-box">Besteht Support fuer Security Updates des Anbieters?</div>
-          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
-          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+          <div id="q3-label" class="question-box">Besteht Support fuer Security Updates des Anbieters?</div>
+          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
         
 
-        <div class="row" data-q="4">
+        <div class="row" data-q="4" role="group" aria-labelledby="q4-label">
           <div class="index-circle">4</div>
-          <div class="question-box">Nutzt die Software ausschliesslich standardisierte Schnittstellen.</div>
-          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
-          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+          <div id="q4-label" class="question-box">Nutzt die Software ausschliesslich standardisierte Schnittstellen.</div>
+          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
         
 
-        <div class="row" data-q="5">
+        <div class="row" data-q="5" role="group" aria-labelledby="q5-label">
           <div class="index-circle">5</div>
-          <div class="question-box">Nutzt die Software ausschliesslich standardisierte Dateiformate?</div>
-          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
-          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+          <div id="q5-label" class="question-box">Nutzt die Software ausschliesslich standardisierte Dateiformate?</div>
+          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
       </section>
 
@@ -82,8 +82,8 @@
       </svg>
 
       <section class="score">
-        <div class="score-label">Score der Digitalen Souveraenitaet (SDS)</div>
-        <div class="score-box" aria-label="Ergebnisfeld"><span id="scoreNumber" class="score-number">1</span></div>
+        <div id="scoreLabel" class="score-label">Score der Digitalen Souveraenitaet (SDS)</div>
+        <div class="score-box" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="scoreLabel scoreNumber"><span id="scoreNumber" class="score-number">1</span></div>
         <div class="score-line" aria-hidden="true"></div>
       </section>
 

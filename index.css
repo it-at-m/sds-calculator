@@ -73,7 +73,7 @@ body {
   line-height: 1.2;
 }
 
-.value {
+button.value {
   height: 44px;
   border-radius: 8px;
   background: var(--blue-soft);
@@ -85,17 +85,17 @@ body {
   cursor: pointer;
   user-select: none;
 }
-.value.yes { }
-.value.no { }
+button.value.yes { }
+button.value.no { }
 /* visuelles Feedback fuer Auswahl */
-.value.selected {
+button.value.selected {
   outline: 2px solid #ffffff;
   outline-offset: 0;
   box-shadow: 0 0 0 3px rgba(255,255,255,0.15) inset;
 }
 
 /* Kleines nach unten gerichtetes Dreieck unter erstem Ja-Wert */
-.mark-caret::after {
+button.value.mark-caret::after {
   content: "";
   position: absolute;
   left: 50%; transform: translateX(-50%);

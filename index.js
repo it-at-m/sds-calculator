@@ -177,19 +177,12 @@
   for (const row of rows) {
     row.addEventListener('click', (e) => {
       const el = (e.target instanceof Element) ? e.target : null;
-      const target = el ? el.closest('.value') : null;
+      const target = el ? el.closest('button.value') : null;
       if (!target || !row.contains(target)) return;
       select(row, target);
       // Linie/Pfeil bei Frage 0 ggf. aktualisieren
       if (row.dataset.q === '0') drawQ0LineAndArrow();
     });
-    // Tastaturzugang
-    row.addEventListener('keydown', (e) => {
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      const active = document.activeElement;
-      if (!active || !row.contains(active) || !active.classList.contains('value')) return;
-      e.preventDefault();
-      select(row, active);
-    });
+    // Buttons reagieren bereits auf Enter/Space; keine doppelte Keydown-Logik noetig
   }
 })();
