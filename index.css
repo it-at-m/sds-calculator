@@ -84,6 +84,7 @@ button.value {
   position: relative;
   cursor: pointer;
   user-select: none;
+  color: var(--text); /* ensure button text stays white */
 }
 button.value.yes { }
 button.value.no { }
