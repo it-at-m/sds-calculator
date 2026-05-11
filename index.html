@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkliste & Berechnung - SDS</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="sheet-header">
+        <h1 class="title">Checkliste & Berechnung<sup class="sup">1</sup></h1>
+        <div class="columns-head">
+          <span class="col ja">Ja</span>
+          <span class="col nein">Nein</span>
+        </div>
+      </header>
+
+      <div class="rule-top" aria-hidden="true"></div>
+
+      <section class="checklist">
+        <div class="row" data-q="0">
+          <div class="index-circle">0</div>
+          <div class="question-box">Gibt es eine reale Alternative fuer die entsprechende Software?<sup class="sup">2</sup></div>
+          <div class="value yes" role="button" tabindex="0" data-value="5">5</div>
+          <div class="value no" role="button" tabindex="0" data-value="5">5</div>
+        </div>
+
+        <!-- Duenne Linie unter Frage 0, ggf. mit unterbrochenem Segment und kleinem Pfeil unter "Ja" (5) -->
+        <svg id="q0overlay" class="connector" aria-hidden="true">
+          <path id="q0LineFull" d="" />
+          <path id="q0LineLeft" d="" style="display:none" />
+          <path id="q0LineRight" d="" style="display:none" />
+          <polygon id="q0Arrow" class="arrow-head" points="0,0 0,0 0,0" fill="#ffffff" style="display:none" />
+        </svg>
+        
+
+        <div class="row" data-q="1">
+          <div class="index-circle">1</div>
+          <div class="question-box">Ist der Firmensitz des Anbieters in der EU?<sup class="sup">3</sup></div>
+          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
+          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+        </div>
+        
+
+        <div class="row" data-q="2">
+          <div class="index-circle">2</div>
+          <div class="question-box">Handelt es sich um Open Source Software?</div>
+          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
+          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+        </div>
+        
+
+        <div class="row" data-q="3">
+          <div class="index-circle">3</div>
+          <div class="question-box">Besteht Support fuer Security Updates des Anbieters?</div>
+          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
+          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+        </div>
+        
+
+        <div class="row" data-q="4">
+          <div class="index-circle">4</div>
+          <div class="question-box">Nutzt die Software ausschliesslich standardisierte Schnittstellen.</div>
+          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
+          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+        </div>
+        
+
+        <div class="row" data-q="5">
+          <div class="index-circle">5</div>
+          <div class="question-box">Nutzt die Software ausschliesslich standardisierte Dateiformate?</div>
+          <div class="value yes" role="button" tabindex="0" data-value="-1">-1</div>
+          <div class="value no" role="button" tabindex="0" data-value="0">0</div>
+        </div>
+      </section>
+
+      <!-- Verbindungspfeil von Zeile 0 / Nein -> Score -->
+      <svg id="connector" class="connector" aria-hidden="true">
+        <path id="connectorPath" d="" />
+        <polygon id="connectorHead" class="arrow-head" points="0,0 0,0 0,0 0,0 0,0 0,0 0,0" fill="#ffffff" />
+      </svg>
+
+      <section class="score">
+        <div class="score-label">Score der Digitalen Souveraenitaet (SDS)</div>
+        <div class="score-box" aria-label="Ergebnisfeld"><span id="scoreNumber" class="score-number">1</span></div>
+        <div class="score-line" aria-hidden="true"></div>
+      </section>
+
+      <section class="notes" aria-label="Fussnoten">
+        <p><span class="num">1)</span> 0 als Ergebnis ist rechnerisch moeglich, dann ist der Score 1, 'hochgradig souveraen'.</p>
+        <p><span class="num">2)</span> Der Anbieter ist kein Monopolist (&lt; 50% Marktanteil) und es existiert derzeit eine Enterprise Software mit aehnlicher Funktionalitaet, zu der mit angemessenem Kosten und Aufwand gewechselt werden kann, oder eine Eigenentwicklung einer solchen Software ist mit vertretbaren Kosten und Aufwand moeglich.</p>
+        <p><span class="num">3)</span> Des Mutterkonzerns des Softwareherstellers bzw. Cloud Service</p>
+        <p><span class="num">4)</span> Z.B. im Rahmen eines Lifecyclemanagements</p>
+      </section>
+    </main>
+    <script src="index.js"></script>
+  </body>
+  </html>

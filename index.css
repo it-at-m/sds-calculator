@@ -1,0 +1,171 @@
+/* Monochromer Hellblau-Infografikstil */
+:root {
+  --blue-bg: #1f4fb6;       /* sattes Primärblau */
+  --blue-mid: rgba(255,255,255,0.08); /* Overlay fuer Frageboxen */
+  --blue-soft: rgba(255,255,255,0.12); /* etwas heller fuer Werte */
+  --blue-strong: #0f3d97;   /* dunklere Akzentflaeche (Score-Box) */
+  --line: rgba(255,255,255,0.35);
+  --text: #eaf2ff;          /* sehr helles Blau/Weiss */
+  --val-w: 70px;            /* Breite der Ja/Nein-Spalten */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  background: var(--blue-bg);
+  color: var(--text);
+}
+
+.sheet {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 32px 40px;
+  position: relative;
+}
+
+.sheet-header {
+  display: grid;
+  grid-template-columns: 1fr calc(var(--val-w) * 2 + 12px); /* Ja/Nein + Gap */
+  align-items: end;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.sup { font-size: 0.6em; vertical-align: super; opacity: 0.9; margin-left: 4px; }
+
+.columns-head { justify-self: end; display: grid; grid-template-columns: var(--val-w) var(--val-w); gap: 12px; font-weight: 600; opacity: 0.95; }
+.columns-head .col { text-align: center; }
+
+.rule-top, .rule { height: 1px; background: var(--line); opacity: 0.8; }
+.rule-top { margin: 12px 0 18px; height: 3px; } /* oben dicker Strich */
+.rule { margin: 10px 0; }
+
+.checklist { display: grid; gap: 10px; }
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr var(--val-w) var(--val-w); /* Kreis | Frage | Ja | Nein */
+  align-items: center;
+  gap: 12px;
+}
+/* Zusaetzlicher Abstand nach Frage 0, damit sie sich abhebt */
+.checklist .row[data-q="0"] { margin-bottom: 12px; }
+
+.index-circle {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.question-box {
+  padding: 10px 12px;
+  background: var(--blue-mid);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 6px; /* dezent, nicht verspielt */
+  line-height: 1.2;
+}
+
+.value {
+  height: 44px;
+  border-radius: 8px;
+  background: var(--blue-soft);
+  border: 1px solid rgba(255,255,255,0.28);
+  display: grid; place-items: center;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.value.yes { }
+.value.no { }
+/* visuelles Feedback fuer Auswahl */
+.value.selected {
+  outline: 2px solid #ffffff;
+  outline-offset: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.15) inset;
+}
+
+/* Kleines nach unten gerichtetes Dreieck unter erstem Ja-Wert */
+.mark-caret::after {
+  content: "";
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  bottom: -12px;
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid rgba(255,255,255,0.85);
+}
+
+/* Rechte eckige Klammerlinie als technischer Rahmen */
+/* Pfeilverbindung per SVG */
+.connector {
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  pointer-events: none; /* darf Klicks nicht abfangen */
+}
+.connector path {
+  stroke: rgba(255,255,255,0.85);
+  stroke-width: 2;
+  fill: none;
+}
+.connector .arrow-head { pointer-events: none; }
+
+/* duenne Trennlinie unter Frage 0 */
+#q0overlay path { stroke: rgba(255,255,255,0.6); stroke-width: 1; }
+
+.score {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Label | Zahl */
+  grid-template-rows: auto auto;   /* Zeile 1: Label+Zahl, Zeile 2: Linie */
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 10px;
+  margin-top: 30px;
+}
+.score-label { font-size: 20px; font-weight: 800; }
+.score-line {
+  height: 3px; /* unten dicker Strich */
+  background: var(--line);
+  grid-column: 1 / -1;
+  grid-row: 1; /* ueber dem Score zeichnen */
+  align-self: center;
+  position: relative;
+  z-index: 2; /* ueber Score-Box */
+  pointer-events: none;
+}
+.score-box {
+  width: calc(var(--val-w) * 2 + 12px); /* Breite von Ja+Gap+Nein */
+  height: 44px; /* optisch nicht höher als Value-Boxen */
+  background: var(--blue-strong);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25) inset;
+  display: grid; place-items: center;
+  position: relative;
+  z-index: 1; /* unter der Linie */
+}
+.score-number { font-size: 28px; font-weight: 800; letter-spacing: 0.5px; }
+
+.notes {
+  margin-top: 22px;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+.notes .num { font-weight: 700; margin-right: 6px; }
+.notes p { margin: 6px 0; }
+
+@media (max-width: 900px) {
+  .sheet { padding: 24px; }
+  :root { --val-w: 64px; }
+  .row { grid-template-columns: 36px 1fr var(--val-w) var(--val-w); }
+}
