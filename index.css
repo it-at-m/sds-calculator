@@ -165,6 +165,59 @@ button.value.mark-caret::after {
 .notes .num { font-weight: 700; margin-right: 6px; }
 .notes p { margin: 6px 0; }
 
+.copy {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Label | Zahl */
+  grid-template-rows: auto auto; /* Zeile 1: Label+Zahl, Zeile 2: Linie */
+  align-items: end;
+  column-gap: 12px;
+  row-gap: 10px;
+  margin-top: 30px;
+}
+
+.software-name {
+  display: grid;
+  gap: 10px;
+}
+
+.software-name label {
+  font-weight: 700;
+}
+
+.software-name input {
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--blue-soft);
+  color: var(--text);
+  padding: 0 12px;
+  font: inherit;
+  outline: none;
+}
+
+.software-name input:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 0;
+}
+
+.copy-link {
+  width: calc(var(--val-w) * 2 + 12px); /* Breite von Ja+Gap+Nein */
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--blue-soft);
+  color: var(--text);
+  font-weight: 700;
+  padding: 0 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.copy-link:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
 @media (max-width: 900px) {
   .sheet { padding: 24px; }
   :root { --val-w: 64px; }

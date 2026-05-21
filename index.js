@@ -2,6 +2,120 @@
 (function () {
   const rows = Array.from(document.querySelectorAll('.checklist .row'));
   const scoreEl = document.getElementById('scoreNumber');
+  const softwareNameEl = document.getElementById('softwareName');
+  const copyLinkBtn = document.getElementById('copyLink');
+  const paramByQuestion = {
+    0: 'alt',
+    1: 'head',
+    2: 'os',
+    3: 'sup',
+    4: 'api',
+    5: 'dat'
+  };
+
+  function currentUrl() {
+    return new URL(window.location.href);
+  }
+
+  function syncUrl() {
+    const url = currentUrl();
+
+    for (const row of rows) {
+      const param = paramByQuestion[row.dataset.q];
+      if (!param) continue;
+
+      const selected = state.get(row);
+      if (selected === 'yes') {
+        url.searchParams.set(param, 'y');
+      } else if (selected === 'no') {
+        url.searchParams.set(param, 'n');
+      } else {
+        url.searchParams.delete(param);
+      }
+    }
+
+    const name = softwareNameEl ? softwareNameEl.value.trim() : '';
+    if (name) {
+      url.searchParams.set('name', name);
+    } else {
+      url.searchParams.delete('name');
+    }
+
+    window.history.replaceState({}, '', url);
+  }
+
+  function applyUrlParams() {
+    const url = currentUrl();
+
+    if (softwareNameEl) {
+      softwareNameEl.value = url.searchParams.get('name') || '';
+    }
+
+    for (const row of rows) {
+      const param = paramByQuestion[row.dataset.q];
+      if (!param) continue;
+
+      const value = url.searchParams.get(param);
+      const target = value === 'y'
+        ? row.querySelector('.value.yes')
+        : value === 'n'
+          ? row.querySelector('.value.no')
+          : null;
+
+      if (!target) continue;
+
+      const yes = row.querySelector('.value.yes');
+      const no = row.querySelector('.value.no');
+      yes.classList.remove('selected');
+      no.classList.remove('selected');
+      yes.setAttribute('aria-pressed', 'false');
+      no.setAttribute('aria-pressed', 'false');
+
+      target.classList.add('selected');
+      target.setAttribute('aria-pressed', 'true');
+      state.set(row, value === 'y' ? 'yes' : 'no');
+    }
+  }
+
+  async function copyCurrentLink() {
+    syncUrl();
+
+    const btn = copyLinkBtn;
+    if (!btn) return;
+
+    const originalText = btn.textContent;
+    const link = window.location.href;
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link);
+      } else {
+        const fallback = document.createElement('textarea');
+        fallback.value = link;
+        fallback.setAttribute('readonly', '');
+        fallback.style.position = 'fixed';
+        fallback.style.left = '-9999px';
+        document.body.appendChild(fallback);
+        fallback.select();
+        document.execCommand('copy');
+        document.body.removeChild(fallback);
+      }
+
+      btn.textContent = 'Kopiert';
+      btn.disabled = true;
+
+      window.setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 1500);
+    } catch (err) {
+      btn.textContent = 'Nicht kopiert';
+      window.setTimeout(() => {
+        btn.textContent = originalText;
+      }, 1500);
+    }
+  }
+
 
   // Zustand pro Zeile: 'yes' | 'no' | null
   const state = new Map();
@@ -62,10 +176,22 @@
       state.set(row, null);
     }
     calcScore();
+    syncUrl();
   }
 
-  // Initial: Nichts ausgewaehlt
+  applyUrlParams();
+
+  // Initial: URL-Parameter anwenden und Score berechnen
   calcScore();
+  drawQ0LineAndArrow();
+
+  if (softwareNameEl) {
+    softwareNameEl.addEventListener('input', syncUrl);
+  }
+
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', copyCurrentLink);
+  }
 
   // Verbindungspfeil vom "Nein" der Zeile 0 zur Score-Box zeichnen
   function drawConnector() {
@@ -99,10 +225,10 @@
     path.setAttribute('d', d);
 
     // Pfeilkopf als Polygon (seitlich zeigend nach links): Form wie im Beispiel, skaliert und an Endpunkt ausgerichtet
-    const endX = stopRight;
+    const endX = stopRight - 2;
     const endY = yScore;
     const size = 6; // Kopf-Groesse
-    const len = size * 2;      // Laenge des Kopfes (von Spitze nach rechts)
+    const len = size * 1.5;      // Laenge des Kopfes (von Spitze nach rechts)
     const halfH = size;        // halbe Hohe des Kopfes
     // Dreieckiger Kopf, nach links zeigend: Spitze am Endpunkt, Basis rechts
     const p = [
