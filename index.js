@@ -2,6 +2,16 @@
 (function () {
   const rows = Array.from(document.querySelectorAll('.checklist .row'));
   const scoreEl = document.getElementById('scoreNumber');
+  // Wenn die Seite in einem iFrame eingebunden ist, die "copy"-Sektion entfernen
+  // (früh im Ablauf, bevor Referenzen auf deren Elemente geholt werden)
+  try {
+    if (window.top !== window.self) {
+      const copySection = document.querySelector('section.copy');
+      if (copySection) copySection.remove();
+    }
+  } catch (_) {
+    // Bei Zugriffsbeschränkungen (Cross-Origin) vorsichtshalber nichts tun
+  }
   const softwareNameEl = document.getElementById('softwareName');
   const copyLinkBtn = document.getElementById('copyLink');
   const paramByQuestion = {
