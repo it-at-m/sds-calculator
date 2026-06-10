@@ -207,7 +207,7 @@ button.value.mark-caret::after {
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: var(--blue-soft);
   color: var(--text);
-  font-weight: 700;
+  font-weight: 500;
   padding: 0 14px;
   cursor: pointer;
   white-space: nowrap;
