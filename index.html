@@ -9,7 +9,10 @@
   <body>
     <main class="sheet">
       <header class="sheet-header">
-        <h1 class="title">Checkliste & Berechnung<sup class="sup">1</sup></h1>
+        <!-- Baselstab SVG -->
+        <img src="baselstab.svg" alt="Baselstab" class="logo">
+        <div class="divider"></div>
+        <h1 class="title">Digitale Souveränität - Checkliste & Berechnung<sup class="sup">1</sup></h1>
         <div class="columns-head" aria-hidden="true">
           <span class="col ja">Ja</span>
           <span class="col nein">Nein</span>
@@ -21,9 +24,9 @@
       <section class="checklist">
         <div class="row" data-q="0" role="group" aria-labelledby="q0-label">
           <div class="index-circle">0</div>
-          <div id="q0-label" class="question-box">Gibt es eine reale Alternative fuer die entsprechende Software?<sup class="sup">2</sup></div>
-          <button type="button" class="value yes" data-value="5" aria-pressed="false" aria-label="Ja, Wert 5">5</button>
-          <button type="button" class="value no" data-value="5" aria-pressed="false" aria-label="Nein, Wert 5">5</button>
+          <div id="q0-label" class="question-box">Gibt es eine reale Alternative für die entsprechende Software?<sup class="sup">2</sup></div>
+          <button type="button" class="value yes" data-value="1" aria-pressed="false" aria-label="Ja, Wert 1">1</button>
+          <button type="button" class="value no" data-value="1" aria-pressed="false" aria-label="Nein, Wert 1. Keine weitere Berechnung.">0</button>
         </div>
 
         <!-- Duenne Linie unter Frage 0, ggf. mit unterbrochenem Segment und kleinem Pfeil unter "Ja" (5) -->
@@ -37,8 +40,8 @@
 
         <div class="row" data-q="1" role="group" aria-labelledby="q1-label">
           <div class="index-circle">1</div>
-          <div id="q1-label" class="question-box">Ist der Firmensitz des Anbieters in der EU?<sup class="sup">3</sup></div>
-          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <div id="q1-label" class="question-box">Ist der Firmensitz des Anbieters in der Schweiz/EU?<sup class="sup">3</sup></div>
+          <button type="button" class="value yes" data-value="1" aria-pressed="false" aria-label="Ja, Wert 1">1</button>
           <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
 
@@ -46,15 +49,15 @@
         <div class="row" data-q="2" role="group" aria-labelledby="q2-label">
           <div class="index-circle">2</div>
           <div id="q2-label" class="question-box">Handelt es sich um Open Source Software?</div>
-          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value yes" data-value="1" aria-pressed="false" aria-label="Ja, Wert 1">1</button>
           <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
 
 
         <div class="row" data-q="3" role="group" aria-labelledby="q3-label">
           <div class="index-circle">3</div>
-          <div id="q3-label" class="question-box">Besteht Support fuer Security Updates des Anbieters?<sup class="sup">4</sup></div>
-          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <div id="q3-label" class="question-box">Besteht Support für Security Updates des Anbieters?<sup class="sup">4</sup></div>
+          <button type="button" class="value yes" data-value="1" aria-pressed="false" aria-label="Ja, Wert 1">1</button>
           <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
 
@@ -62,7 +65,7 @@
         <div class="row" data-q="4" role="group" aria-labelledby="q4-label">
           <div class="index-circle">4</div>
           <div id="q4-label" class="question-box">Nutzt die Software ausschliesslich standardisierte Schnittstellen.</div>
-          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value yes" data-value="1" aria-pressed="false" aria-label="Ja, Wert 1">1</button>
           <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
 
@@ -70,7 +73,7 @@
         <div class="row" data-q="5" role="group" aria-labelledby="q5-label">
           <div class="index-circle">5</div>
           <div id="q5-label" class="question-box">Nutzt die Software ausschliesslich standardisierte Dateiformate?</div>
-          <button type="button" class="value yes" data-value="-1" aria-pressed="false" aria-label="Ja, Wert -1">-1</button>
+          <button type="button" class="value yes" data-value="1" aria-pressed="false" aria-label="Ja, Wert 1">1</button>
           <button type="button" class="value no" data-value="0" aria-pressed="false" aria-label="Nein, Wert 0">0</button>
         </div>
       </section>
@@ -82,22 +85,22 @@
       </svg>
 
       <section class="score">
-        <div id="scoreLabel" class="score-label">Score der Digitalen Souveraenitaet (SDS)</div>
+        <div id="scoreLabel" class="score-label">Score der Digitalen Souveränität (SDS)</div>
         <div class="score-box" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="scoreLabel scoreNumber"><span id="scoreNumber" class="score-number">1</span></div>
         <div class="score-line" aria-hidden="true"></div>
       </section>
 
       <section class="copy">
         <div class="software-name">
-          <label for="softwareName">Name der gepr&uuml;ften Software</label>
+          <label for="softwareName">Name der geprüften Software</label>
           <input id="softwareName" name="name" type="text" autocomplete="off" aria-label="Softwarename"/>
         </div>
-        <button id="copyLink" class="copy-link" type="button" aria-label="Link mit aktueller Bewertung und Softwarename kopieren">Link teilen</button>
+        <button id="copyLink" class="copy-link" type="button" aria-label="Link mit aktueller Bewertung und Softwarename kopieren">Link kopieren</button>
       </section>
 
       <section class="notes" aria-label="Fussnoten">
-        <p><span class="num">1)</span> 0 als Ergebnis ist rechnerisch moeglich, dann ist der Score 1, 'hochgradig souveraen'.</p>
-        <p><span class="num">2)</span> Der Anbieter ist kein Monopolist (&lt; 50% Marktanteil) und es existiert derzeit eine Enterprise Software mit aehnlicher Funktionalitaet, zu der mit angemessenem Kosten und Aufwand gewechselt werden kann, oder eine Eigenentwicklung einer solchen Software ist mit vertretbaren Kosten und Aufwand moeglich.</p>
+        <p><span class="num">1)</span> 0 als Ergebnis ist rechnerisch möglich, dann ist der Score 1, 'niedrig souverän'.</p>
+        <p><span class="num">2)</span> Der Anbieter ist kein Monopolist (&lt; 50% Marktanteil) und es existiert derzeit eine Enterprise Software mit ähnlicher Funktionalität, zu der mit angemessenem Kosten und Aufwand gewechselt werden kann, oder eine Eigenentwicklung einer solchen Software ist mit vertretbaren Kosten und Aufwand möglich.</p>
         <p><span class="num">3)</span> Des Mutterkonzerns des Softwareherstellers bzw. Cloud Service</p>
         <p><span class="num">4)</span> Z.B. im Rahmen eines Lifecyclemanagements</p>
       </section>

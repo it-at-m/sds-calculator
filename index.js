@@ -1,4 +1,4 @@
-// Interaktion fuer die hellblaue statische SDS-Seite: Klicks auf Ja/Nein summieren und Score anzeigen
+// Interaktion für die statische SDS-Seite: Klicks auf Ja/Nein summieren und Score anzeigen
 (function () {
   const rows = Array.from(document.querySelectorAll('.checklist .row'));
   const scoreEl = document.getElementById('scoreNumber');
@@ -131,7 +131,7 @@
   const state = new Map();
 
   function calcScore() {
-    // Sonderlogik: Frage 0 entscheidet, ob berechnet wird oder direkt 5 gesetzt wird.
+    // Sonderlogik: Frage 0 entscheidet, ob berechnet wird oder direkt 1 gesetzt wird.
     const row0 = document.querySelector('.checklist .row[data-q="0"]');
     const yes0 = row0 ? row0.querySelector('.value.yes') : null;
     const no0 = row0 ? row0.querySelector('.value.no') : null;
@@ -150,8 +150,8 @@
     }
 
     if (isNoSelected) {
-      // Keine weitere Berechnung: fester SDS 5
-      scoreEl.textContent = '5';
+      // Keine weitere Berechnung: fester SDS 1 (schlechtester Score)
+      scoreEl.textContent = '1';
       return;
     }
 
@@ -305,7 +305,7 @@
   // Nach Mount einmal zeichnen
   drawConnector();
 
-  // Events fuer Linie/Pfeil unter Frage 0
+  // Events für Linie/Pfeil unter Frage 0
   window.addEventListener('resize', drawQ0LineAndArrow);
   window.addEventListener('load', drawQ0LineAndArrow);
   drawQ0LineAndArrow();

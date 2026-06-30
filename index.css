@@ -26,17 +26,28 @@ body {
 }
 
 .sheet-header {
-  display: grid;
-  grid-template-columns: 1fr calc(var(--val-w) * 2 + 12px); /* Ja/Nein + Gap */
+  display: flex;
   align-items: end;
   gap: 16px;
 }
 
+.logo {
+    height: 34px;
+    width: auto;
+    display: block;
+}
+
+.divider {
+    width: 1px;
+    height: 34px;
+    background: white;
+}
+
 .title {
-  margin: 0;
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 0.2px;
+  margin: 0 auto 0 0;
 }
 .sup { font-size: 0.6em; vertical-align: super; opacity: 0.9; margin-left: 4px; }
 
@@ -207,7 +218,7 @@ button.value.mark-caret::after {
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: var(--blue-soft);
   color: var(--text);
-  font-weight: 500;
+  font-weight: 700;
   padding: 0 14px;
   cursor: pointer;
   white-space: nowrap;
