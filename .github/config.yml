@@ -2,7 +2,6 @@
 
 # Comment to be posted to on first time issues
 newIssueWelcomeComment: |
-  Greetings from Munich! 🥨
   Thank you very much for participating in our project by opening this issue! ❤
   We will take a look at your issue as soon as possible! 👀
 
@@ -10,7 +9,6 @@ newIssueWelcomeComment: |
 
 # Comment to be posted to on PRs from first time contributors in your repository
 newPRWelcomeComment: |
-  Greetings from Munich! 🥨
   Thank you very much for participating in our project by opening this pull request! ❤
   Please check out our contribution guidelines for further information. ℹ
   We will review your changes as soon as possible! 👀
@@ -19,7 +17,6 @@ newPRWelcomeComment: |
 
 # Comment to be posted to on pull requests merged by a first time user
 firstPRMergeComment: |
-  It's Munich again! 🥨
   Thank you very much for your first successful contribution to our project! ❤
   Munich is proud of you! 🎉
   Until next time! 👋
